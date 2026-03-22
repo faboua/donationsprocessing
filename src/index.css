@@ -1,8 +1,30 @@
-:root {
-  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
-  color-scheme: light dark;
-}
+@import "tailwindcss";
 
-body {
-  margin: 0;
+@theme {
+  --color-primary-50: #f5f0fa;
+  --color-primary-100: #e8ddf3;
+  --color-primary-200: #d1bbe7;
+  --color-primary-300: #b48fd6;
+  --color-primary-400: #9a6bc2;
+  --color-primary-500: #7B4FA0;
+  --color-primary-600: #643f83;
+  --color-primary-700: #4d3066;
+  --color-primary-800: #372249;
+  --color-primary-900: #21142c;
+
+  --color-accent-red: #E63946;
+  --color-accent-blue: #3B9FD9;
+  --color-accent-green: #5AB55A;
+  --color-accent-gold: #F0B840;
+
+  --color-gray-50: #f7f7f7;
+  --color-gray-100: #eeeeee;
+  --color-gray-200: #d9d9d9;
+  --color-gray-300: #c0c0c0;
+  --color-gray-400: #a8a8a8;
+  --color-gray-500: #888888;
+  --color-gray-600: #666666;
+  --color-gray-700: #4a4a4a;
+  --color-gray-800: #2d2d2d;
+  --color-gray-900: #1a1a1a;
 }

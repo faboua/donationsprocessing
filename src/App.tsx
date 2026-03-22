@@ -1,5 +1,8 @@
+import Landing from './pages/Landing/Landing'
+
 function App() {
-  return <></>
+  return <Landing />
 }
 
 export default App
+
