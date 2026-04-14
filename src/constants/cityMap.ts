@@ -1,6 +1,6 @@
 export const CITY_MAP: Record<string, string> = {
-  QBC: "Québec",
-  QCB: "Québec",
+  QBC: "Quebec",
+  QCB: "Quebec",
   VIC: "Victoriaville",
   SHK: "Sherbrooke",
   TOR: "Toronto",
@@ -9,4 +9,11 @@ export const CITY_MAP: Record<string, string> = {
   LVL: "Laval",
   VAL: "Valleyfield",
   OTT: "Ottawa",
+  MTL: "Montreal",
+  MLT: "Montreal",
+  GTO: "Gatineau",
+  MOC: "Moncton",
+  TRR: "Trois-Rivieres",
+  CBG: "Chibougamau",
+  DRU: "Drummondville",
 };
