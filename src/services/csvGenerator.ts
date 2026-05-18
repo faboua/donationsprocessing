@@ -48,9 +48,38 @@ export function generateSummaryCsv(
 }
 
 export function generateRejectedCsv(
-  rejected: { PaymentNumber: string; Line: string }[],
+  rejected: {
+    PaymentNumber: string;
+    CustomerName: string;
+    TransactionDate: string | undefined;
+    PaymentAmount: string;
+    Line: string;
+  }[],
 ): string {
-  return toCsv(["PaymentNumber", "Line"], rejected);
+  return toCsv(
+    [
+      "DonationNumber",
+      "TransactionDate",
+      "PaymentAmount",
+      "DonationCategory",
+      "PaymentCategory",
+      "Description",
+      "CustomerName",
+      "PaymentNumber",
+      "Line",
+    ],
+    rejected.map((r) => ({
+      DonationNumber: "",
+      TransactionDate: r.TransactionDate ?? "",
+      PaymentAmount: r.PaymentAmount,
+      DonationCategory: "",
+      PaymentCategory: "Paiement Facture",
+      Description: "",
+      CustomerName: r.CustomerName,
+      PaymentNumber: r.PaymentNumber,
+      Line: r.Line,
+    })),
+  );
 }
 
 export function downloadCsv(content: string, filename: string): void {

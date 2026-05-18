@@ -1,5 +1,9 @@
 import Papa from "papaparse";
-import type { PaymentDetail, RejectedData, Transaction } from "../types/processing";
+import type {
+  PaymentDetail,
+  RejectedData,
+  Transaction,
+} from "../types/processing";
 import { CITY_MAP } from "../constants/cityMap";
 
 function isValidAccountNumber(accountNumber: string): boolean {
@@ -21,7 +25,7 @@ function isDateLike(str: string): boolean {
 }
 
 export async function parseTransactionFiles(
-  files: File[]
+  files: File[],
 ): Promise<Map<string, string>> {
   const dateMap = new Map<string, string>();
 
@@ -51,7 +55,7 @@ export async function parseTransactionFiles(
 
 export async function parseReportFiles(
   files: File[],
-  transactionDates: Map<string, string>
+  transactionDates: Map<string, string>,
 ): Promise<{ details: PaymentDetail[]; rejected: RejectedData[] }> {
   const paymentDetails: PaymentDetail[] = [];
   const rejectedData: RejectedData[] = [];
@@ -107,8 +111,13 @@ export async function parseReportFiles(
             Description: CITY_MAP[city] ?? "",
           });
         } else if (isDateLike(trimmedLine.substring(0, 8))) {
+          const customerName = trimmedLine.substring(26, 52).trim();
+          const paymentAmount = trimmedLine.substring(64).trim();
           rejectedData.push({
             PaymentNumber: paymentNumber,
+            CustomerName: customerName,
+            TransactionDate: transactionDates.get(paymentNumber),
+            PaymentAmount: paymentAmount,
             Line: trimmedLine,
           });
         }
