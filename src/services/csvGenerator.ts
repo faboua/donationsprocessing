@@ -12,28 +12,43 @@ function escapeField(value: string | number | undefined): string {
 function toCsv(headers: string[], rows: Record<string, unknown>[]): string {
   const headerLine = headers.map(escapeField).join(",");
   const dataLines = rows.map((row) =>
-    headers.map((h) => escapeField(row[h] as string | number | undefined)).join(",")
+    headers
+      .map((h) => escapeField(row[h] as string | number | undefined))
+      .join(","),
   );
   return [headerLine, ...dataLines].join("\n");
 }
 
 export function generateCityDonationCsv(
-  rows: { DonationNumber: string; TransactionDate: string | undefined; PaymentAmount: string; DonationCategory: string; Description: string }[]
+  rows: {
+    DonationNumber: string;
+    TransactionDate: string | undefined;
+    PaymentAmount: string;
+    DonationCategory: string;
+    Description: string;
+  }[],
 ): string {
   return toCsv(
-    ["DonationNumber", "TransactionDate", "PaymentAmount", "DonationCategory", "Description"],
-    rows
+    [
+      "DonationNumber",
+      "TransactionDate",
+      "PaymentAmount",
+      "DonationCategory",
+      "PaymentCategory",
+      "Description",
+    ],
+    rows,
   );
 }
 
 export function generateSummaryCsv(
-  summary: { PaymentNumber: string; TotalPaymentAmount: number }[]
+  summary: { PaymentNumber: string; TotalPaymentAmount: number }[],
 ): string {
   return toCsv(["PaymentNumber", "TotalPaymentAmount"], summary);
 }
 
 export function generateRejectedCsv(
-  rejected: { PaymentNumber: string; Line: string }[]
+  rejected: { PaymentNumber: string; Line: string }[],
 ): string {
   return toCsv(["PaymentNumber", "Line"], rejected);
 }
