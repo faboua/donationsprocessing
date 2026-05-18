@@ -42,6 +42,7 @@ export interface CityDonationRow {
   TransactionDate: string | undefined;
   PaymentAmount: string;
   DonationCategory: string;
+  PaymentCategory?: string;
   Description: string;
 }
 

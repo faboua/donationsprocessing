@@ -8,7 +8,7 @@ import type {
 
 export function processDonations(
   details: PaymentDetail[],
-  rejected: RejectedData[]
+  rejected: RejectedData[],
 ): ProcessingResult {
   // Group by city
   const cityDonations: Record<string, CityDonationRow[]> = {};
@@ -22,6 +22,7 @@ export function processDonations(
       TransactionDate: detail.TransactionDate,
       PaymentAmount: detail.PaymentAmount,
       DonationCategory: detail.DonationCategory,
+      PaymentCategory: "Paiement Facture",
       Description: detail.Description,
     });
   }
@@ -39,7 +40,10 @@ export function processDonations(
   const summaryMap = new Map<string, number>();
   for (const detail of details) {
     const current = summaryMap.get(detail.PaymentNumber) ?? 0;
-    summaryMap.set(detail.PaymentNumber, current + Number(detail.PaymentAmount));
+    summaryMap.set(
+      detail.PaymentNumber,
+      current + Number(detail.PaymentAmount),
+    );
   }
 
   const summary: SummaryData[] = Array.from(summaryMap.entries())
