@@ -18,6 +18,9 @@ export interface SummaryData {
 
 export interface RejectedData {
   PaymentNumber: string;
+  CustomerName: string;
+  TransactionDate: string | undefined;
+  PaymentAmount: string;
   Line: string;
 }
 
